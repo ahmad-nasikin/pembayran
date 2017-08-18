@@ -16,6 +16,4 @@ app.use('/', index);
 app.use('/student', student);
 app.use('/course', course);
 
-app.listen(3000, () => {
-  console.log('listen 3000');
-})
+app.listen(process.env.PORT || 3000);
