@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subject Page</title>
+    <%- include partial/header %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <% if(dataStudent[0] === undefined){ %>
+            <h1>Anda Belum Mengambil Kursus !!!</h1>
+            <button onclick="window.location='/student'" class="btn btn-primary glyphicon glyphicon-fast-backward" > Kembali ke Student List</button>
+          <% }else{ %>
+            <h1>Data Student : <%= dataStudent[0].Student.name %></h1>
+            <div>
+              <button id="btn-back" onclick="window.location='/student'" class="btn btn-primary glyphicon glyphicon-fast-backward"> Back To Student List</button><br><br>
+              <table border="1" class="table table-hover table-bordered  table-striped">
+                <tr class="success">
+                  <th class="text-center">No</th>
+                  <th class="text-center">Course Name</th>
+                  <th class="text-center">Harga</th>
+                </tr>
+                <%var no = 1; for(var i = 0 ; i < dataStudent.length; i++) {%>
+                    <tr>
+                      <td><%= no %><% no += 1 %></td>
+                      <td><%= dataStudent[i].Course.course_name %></td>
+                      <td>Rp. <%= dataStudent[i].Course.price%></td>
+
+                    </tr>
+                    <% } %>
+                <tr>
+                  <td class="text-right" colspan="2"><b>Total</b></td>
+                  <td>
+                    <% let total = 0; for(var i = 0 ; i < dataStudent.length; i++) {%>
+                      <% total += parseInt(dataStudent[i].Course.price) %>
+                    <% } %>
+                    Rp. <%= total %>
+
+                  </td>
+                </tr>
+              </table>
+            </div><br><br>
+            <form action="<%= dataStudent[0].Student.email %>" method="POST"  class="form-group has-success" >
+              <input type="email"  class="form-control" name="email" value="<%= dataStudent[0].Student.email %>" disabled=""><br>
+              <textarea name="message" rows="5" cols="20" class="form-control" >Atas Nama : <%= dataStudent[0].Student.name %>, Jumlah yang anda harus bayar untuk mengikuti kursus tersebut Sebesar:  Rp. <%= total %>
+              </textarea><br>
+              <button type="submit" value="Send"   class="btn btn-primary glyphicon glyphicon-share"> kirim email</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

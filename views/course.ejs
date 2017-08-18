@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subject Page</title>
+    <%- include partial/header %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <br><br>
+          <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/student">Student</a></li>
+            <li role="presentation" class="active"><a href="/course">Course</a></li>
+          </ul>
+          <br><br>
+          <h1>Data Course</h1>
+          <div>
+            <a href="course/addCourse"><button id="btn-start"  class="btn btn-primary glyphicon glyphicon-edit"> Tambah Data</button></a>
+            <button id="btn-back" onclick="window.location='/'" class="btn btn-primary glyphicon glyphicon-backward"> Back</button>
+            <br><br>
+            <table border="1" class="table table-hover table-bordered  table-striped">
+              <tr class="success">
+                <th>No</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Options</th>
+                <th>Action</th>
+              </tr>
+              <% var no = 1; dtCourse.forEach(d => {%>
+                <tr>
+                  <td><%= no %> <% no+=1%></td>
+                  <td><%= d.course_name %></td>
+                  <td><%= d.price %></td>
+                  <td><a href="course/<%= d.id %>/detailCourse" class="glyphicon glyphicon-hand-right"> Detail Course</a></td>
+                  <td><a href='course/delete/<%= d.id %>' onclick="return confirm('Yakin mau menghapus data ini?');" class="glyphicon glyphicon-remove">  Delete</a></td>
+                </tr>
+              <% }) %>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>

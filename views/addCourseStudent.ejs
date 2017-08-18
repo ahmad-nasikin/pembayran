@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Course To Student</title>
+    <%- include partial/header %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Add Course To Student</h1>
+          <button id="btn-back" onclick="window.location='/student'" class="btn btn-primary glyphicon glyphicon-fast-backward"> Back</button>
+          <div>
+            <form class="form-group has-success"  name="mainForm" action="/student/edit/<%= data.id %>/addcourse" method="post">
+              <div class="container">
+                <label><b>Id</b></label>
+                <input  class="form-control" type="text" name="StudentId" value="<%= data.id %>" disabled/>
+                <label><b>Nama</b></label>
+                <input  class="form-control" type="text" name="name" value="<%= data.name %>" disabled/>
+                <label><b>Gender</b></label>
+                <input  class="form-control" type="text" name="gender" value="<%= data.gender %>" disabled/>
+                <label><b>Address</b></label>
+                <input  class="form-control" type="text" name="address" value="<%= data.address %>" disabled=/>
+                <label><b>Email</b></label>
+                <input  class="form-control" type="email" name="email" value="<%= data.email %>" disabled/>
+                <label><b>Course</b></label>
+                <% if(data.Course == null) { %>
+                  <select name="CourseId" class="form-control">
+                    <option value="" class="form-control">--Select Course--</option>
+                    <% data2.forEach((d2) => { %>
+                    <option value="<%= d2.id %>" class="form-control"><%= d2.course_name %></option>
+                    <% }) %>
+                  </select>
+                <% } else {%>
+                  <select name="CourseId"  class="form-control">
+                    <option value = "<%= data.Courses[0].StudentCourses.StudentId %>" selected="<%= data.Courses[0].StudentCourses.StudentId %>"  class="form-control"><%= data.Courses[0].course_name %></option>
+                    <% data2.forEach(d2 => { %>
+                      <option value="<%= d2.id %>"  class="form-control"><%= d2.course_name %></option>
+                    <% }) %>
+                  </select>
+                <% } %>
+                <div><br><br>
+                  <button type="submit"  class="btn btn-primary glyphicon glyphicon-check"> Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

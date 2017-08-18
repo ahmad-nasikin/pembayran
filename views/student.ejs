@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%- include partial/header %>
+    <title>Ini Student</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <br><br>
+          <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="/student">Student</a></li>
+            <li role="presentation"><a href="/course">Course</a></li>
+          </ul>
+          <br><br>
+          <a href="student/add" class="btn btn-primary glyphicon glyphicon-pencil"> Add Student</a>
+          <br><br>
+          <h1>Data Student</h1>
+          <table border="2" class="table table-hover table-bordered  table-striped" >
+            <tr class="success">
+              <th>ID</th>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Kursus Yang Di Ambil</th>
+              <th>Option</th>
+              <th>Action</th>
+            </tr>
+            <% dataStudent.forEach(dataStudent=> { %>
+              <tr>
+                <td><%= dataStudent.id %></td>
+                <td><%= dataStudent.name %></td>
+                <td><%= dataStudent.gender %></td>
+                <td><%= dataStudent.address %></td>
+                <td><%= dataStudent.email %></td>
+                <td><a href="student/<%=dataStudent.id%>/detailStudent" class="glyphicon glyphicon-hand-right"> Details</a></td>
+                <td><a href='student/edit/<%= dataStudent.id %>/addcourse' class="glyphicon glyphicon-plus"> Add Course</a></td>
+                  <td><a href='student/edit/<%= dataStudent.id %>' class="glyphicon glyphicon-pencil"> Edit</a> || <a href='student/delete/<%= dataStudent.id %>' onclick="return confirm('Delete <%= dataStudent.name%> ?');" class="glyphicon glyphicon-remove"> Delete</a></td>
+              </tr>
+            <% }) %>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

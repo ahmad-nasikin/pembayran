@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%- include partial/header %>
+    <title>Add Course</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <h1>Tambah Course</h1>
+          <br><br>
+          <form class="form-group has-success" action="/course" method="post">
+            <input class="form-control" type="text" name="course_name" placeholder="Course Name"><br>
+            <input class="form-control" type="text" name="price" placeholder="Price"><br>
+            <button type="submit" class="btn btn-primary glyphicon glyphicon-pencil" > Tambah</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
